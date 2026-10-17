@@ -7,3 +7,5 @@ work/
 **/long-test-account/
 **/tests/*.exe
 **/tests/*.dll
+
+**/*FlowTests.exe

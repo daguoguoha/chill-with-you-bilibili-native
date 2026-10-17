@@ -15,7 +15,7 @@ using UnityEngine.Networking;
 
 namespace ChillBilibiliPlaylist
 {
-    [BepInPlugin("local.chill.bilibiliplaylist", "B站歌单", "1.0.0")]
+    [BepInPlugin("local.chill.bilibiliplaylist", "B站歌单", "1.0.1")]
     [BepInProcess("Chill With You.exe")]
     public sealed partial class Plugin : BaseUnityPlugin
     {
@@ -131,7 +131,7 @@ namespace ChillBilibiliPlaylist
                 Task<object> finished = job; Action<object> done = onDone;
                 job = null; onDone = null; busy = false;
                 if (finished.IsFaulted)
-                { status = "请求未完成：" + finished.Exception.GetBaseException().Message; qrPolling = false; Logger.LogWarning("B站请求失败：" + finished.Exception.GetBaseException().GetType().Name); }
+                { HandleRequestFailure(finished.Exception.GetBaseException()); }
                 else if (!finished.IsCanceled) { try { done(finished.Result); } catch (Exception ex) { status = "处理响应失败，请重试。"; Logger.LogWarning(ex.GetType().Name); } }
             }
             if (ready && qrPolling && !busy && Time.realtimeSinceStartup >= nextPoll)
@@ -153,7 +153,7 @@ namespace ChillBilibiliPlaylist
         void ClearQr() { if (qrImage != null) Destroy(qrImage); qrImage = null; }
         void Login()
         {
-            qrPolling = false; ClearQr();
+            requestIssue=null; qrPolling = false; ClearQr();
             status = "正在获取登录二维码，连接失败时自动重试一次…";
             Run(delegate { Bridge.CancelQr(); return Bridge.QrImage(loginType); }, delegate(object result)
             {

@@ -18,3 +18,5 @@
 游戏、Unity、TextMeshPro、UniTask、R3、ObservableCollections 和 Newtonsoft.Json 仅从用户的本地游戏引用，不随包分发。Windows Media Foundation 由操作系统提供。此版没有使用 Go、Zig、KuGouMusicApi 或 QQ Go 桥接。
 
 依赖原始发布地址和 SHA256 见 dependencies.json，整个发行包的文件校验见 SHA256SUMS.txt。重新分发时请保留适配源码、构建脚本、版权与许可文本。
+
+设备 Cookie 字段参考 [bilibili-API-collect 设备接口文档](https://github.com/pskdje/bilibili-API-collect/blob/main/docs/misc/buvid3_4.md) 的接口说明，未复制其示例设备标识。

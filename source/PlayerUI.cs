@@ -177,13 +177,14 @@ namespace ChillBilibiliPlaylist
             GUI.Label(new Rect(80, 18, 300, 36), "B站", titleText);
             GUI.Label(new Rect(81, 52, 330, 22), "在放松时光里，听你的歌单", mutedText);
             GUI.enabled = logged && ready && !busy;
-            if (GUI.Button(new Rect(686, 27, 80, 36), "刷新", buttonStyle)) RefreshPlaylists();
+            if (GUI.Button(new Rect(686, 27, 80, 36), "刷新", buttonStyle)) RetryAccount();
             GUI.enabled = ready && !busy;
             if (GUI.Button(new Rect(776, 27, 110, 36), logged ? "切换账号" : "扫码登录", buttonStyle)) Login();
             GUI.enabled = true;
             if (GUI.Button(new Rect(896, 27, 80, 36), "收起 F11", quietButton)) visible = false;
             DrawSidebar();
-            if (showImport) DrawImport();
+            if (requestIssue!=null) DrawRequestIssue();
+            else if (showImport) DrawImport();
             else if (qrImage != null || (!logged && songs.Count == 0)) DrawLogin();
             else DrawLibrary();
             DrawPlayer();
@@ -212,7 +213,7 @@ namespace ChillBilibiliPlaylist
             GUI.enabled = ready && !busy;
             if (GUI.Button(new Rect(34, 477, 212, 28), showImport ? "返回歌曲列表" : "+  导入歌单", quietButton)) showImport = !showImport;
             GUI.enabled = true;
-            GUI.Label(new Rect(32, 525, 224, 23), logged ? Fit(nickname, bodyText, 190) : "未登录", bodyText);
+            GUI.Label(new Rect(32, 525, 224, 23), logged ? (string.IsNullOrEmpty(nickname)?"已登录，等待读取":Fit(nickname, bodyText, 190)) : "未登录", bodyText);
             GUI.Label(new Rect(32, 550, 224, 19), logged ? "B站账号已连接" : "扫码连接你的音乐", smallText);
         }
         void UpdateFilter()
