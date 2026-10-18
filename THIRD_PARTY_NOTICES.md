@@ -20,3 +20,5 @@
 依赖原始发布地址和 SHA256 见 dependencies.json，整个发行包的文件校验见 SHA256SUMS.txt。重新分发时请保留适配源码、构建脚本、版权与许可文本。
 
 设备 Cookie 字段参考 [bilibili-API-collect 设备接口文档](https://github.com/pskdje/bilibili-API-collect/blob/main/docs/misc/buvid3_4.md) 的接口说明，未复制其示例设备标识。
+
+真实播放记录兼容性实现的协议来源见 PLAYBACK_REPORTING.md；没有复制或分发平台网页播放器的整份代码或美术资源。
