@@ -1,1 +1,1 @@
-3c09a3b60a8a410401ecfa8548379a0501734185467d313ea95bacc7a530a4f1  ChillBilibiliNative-1.1.0-OneClick.zip
+e450c4e2e7c77f470a662eafdfda1ee960e8fe351b10e57cddb528c49b90685a  ChillBilibiliNative-1.2.0-OneClick.zip
